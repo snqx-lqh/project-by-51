@@ -1,0 +1,147 @@
+LX51 LINKER/LOCATER V4.66.97.0                                                          01/20/2022  21:41:38  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.97.0, INVOKED BY:
+D:\SOFTWARE\PROGRAM\KEIL5\C51\BIN\LX51.EXE .\BUILD\DEBUG\SRC\MAIN.O TO .\BUILD\DEBUG\51单片机控制步进电机 PRINT (.\build
+>> \Debug\51单片机控制步进电机.map) REMOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\DEBUG\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.60.0.0
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C_INIT)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\DEBUG\51单片机控制步进电机 (MAIN)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   00021CH   CODE
+I:000000H   I:000000H   I:00007FH   00000CH   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\DEBUG\51单片机控制步进电机 (MAIN)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   00000BH   000004H   BYTE   UNIT     DATA           ?DT?MAIN
+00000CH   00000CH   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000007H   000005H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000008H   00000AH   000003H   ---    ---      **GAP**
+00000BH   00000DH   000003H   BYTE   OFFS..   CODE           ?MAIN?0000B
+00000EH   0000FDH   0000F0H   BYTE   UNIT     CODE           ?PR?_MOTOR2TURN?MAIN
+0000FEH   000189H   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+00018AH   0001EAH   000061H   BYTE   UNIT     CODE           ?PR?TIMER0?MAIN
+0001EBH   000203H   000019H   BYTE   UNIT     CODE           ?PR?_MOTOR1TURN?MAIN
+000204H   000215H   000012H   BYTE   UNIT     CODE           ?PR?TIMER0INIT?MAIN
+000216H   00021EH   000009H   BYTE   UNIT     CODE           ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\DEBUG\51单片机控制步进电机 (MAIN)
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+TIMER0/MAIN                 ----- -----  ----- -----
+  +--> _MOTOR1TURN/MAIN
+  +--> _MOTOR2TURN/MAIN
+
+_MOTOR1TURN/MAIN            ----- -----  ----- -----
+
+_MOTOR2TURN/MAIN            ----- -----  ----- -----
+
+LX51 LINKER/LOCATER V4.66.97.0                                                        01/20/2022  21:41:38  PAGE 2
+
+
+*** NEW ROOT **************
+
+?C_C51STARTUP               ----- -----  ----- -----
+  +--> MAIN/MAIN
+  +--> ?C_INITSEG
+
+MAIN/MAIN                   ----- -----  ----- -----
+  +--> TIMER0INIT/MAIN
+
+TIMER0INIT/MAIN             ----- -----  ----- -----
+
+?C_INITSEG                  ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\DEBUG\51单片机控制步进电机 (MAIN)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000000H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      01000145H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      010001EBH   CODE     ---       _Motor1Turn
+      0100000EH   CODE     ---       _Motor2Turn
+      01000003H   CODE     ---       main
+      0100018AH   CODE     ---       Timer0
+      01000204H   CODE     ---       Timer0Init
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\DEBUG\51单片机控制步进电机 (MAIN)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MAIN
+      0100000EH   PUBLIC    CODE     ---       _Motor2Turn
+      010001EBH   PUBLIC    CODE     ---       _Motor1Turn
+      0100018AH   PUBLIC    CODE     ---       Timer0
+      01000204H   PUBLIC    CODE     ---       Timer0Init
+      01000003H   PUBLIC    CODE     ---       main
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000204H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100018AH   BLOCK     CODE     ---       LVL=0
+      010001A7H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000008H   SYMBOL    DATA     VOID      counts
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010001EBH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100000EH   BLOCK     CODE     ---       LVL=0
+      0100000EH   BLOCK     CODE     NEAR LAB  LVL=1
+      0000000AH   SYMBOL    DATA     VOID      motor1Step
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+LX51 LINKER/LOCATER V4.66.97.0                                                        01/20/2022  21:41:38  PAGE 3
+
+
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C_INIT
+      01000145H   PUBLIC    CODE     ---       ?C_START
+
+Program Size: data=13.0 xdata=0 const=0 code=540
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

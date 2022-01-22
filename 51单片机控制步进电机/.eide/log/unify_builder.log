@@ -1,0 +1,167 @@
+[2022-01-18 19:52:41]	link failed !, exit code: 2
+  at unify_builder.Program.Main (System.String[] args) [0x019f5] in <bd848165df964d26b51d3d1ad263c7b0>:0 
+---
+LX51 LINKER/LOCATER V4.66.97.0 - SN: K1DZC-I2YZBC
+COPYRIGHT ARM Germany GmbH 1995 - 2019
+@e:\Project_Practice\51单片机模块学习\51单片机控制步进电机\build\Debug\51单片机控制步进电机.lnp 
+.\build\Debug\src\main.o TO .\build\Debug\51单片机控制步进电机
+PRINT(.\build\Debug\51单片机控制步进电机.map) REMOVEUNUSED
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  KeyScan
+    MODULE:  .\BUILD\DEBUG\SRC\MAIN.O (MAIN)
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  KeyScan
+    MODULE:  .\BUILD\DEBUG\SRC\MAIN.O (MAIN)
+    ADDRESS: 1000032H
+Program Size: data=9.0 xdata=0 const=0 code=106
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2022-01-18 19:53:02]	[done]
+	build successfully !
+
+[2022-01-18 20:03:33]	[done]
+	build successfully !
+
+[2022-01-18 20:44:14]	[done]
+	build successfully !
+
+[2022-01-18 20:51:55]	compilation failed at : "e:\Project_Practice\51单片机模块学习\51单片机控制步进电机\src\main.c", exit code: 2
+  at unify_builder.Program.Main (System.String[] args) [0x01851] in <bd848165df964d26b51d3d1ad263c7b0>:0 
+---
+C51 COMPILER V9.60.0.0 - SN: K1DZC-I2YZBC
+COPYRIGHT Copyright (C) 2012 - 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 9 OF .\SRC\MAIN.C: 'MotorB2': undefined identifier
+*** ERROR C202 IN LINE 95 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 96 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 98 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+C51 COMPILATION COMPLETE.  0 WARNING(S),  6 ERROR(S)
+
+[2022-01-18 21:06:10]	compilation failed at : "e:\Project_Practice\51单片机模块学习\51单片机控制步进电机\src\main.c", exit code: 2
+  at unify_builder.Program.Main (System.String[] args) [0x01851] in <bd848165df964d26b51d3d1ad263c7b0>:0 
+---
+C51 COMPILER V9.60.0.0 - SN: K1DZC-I2YZBC
+COPYRIGHT Copyright (C) 2012 - 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 9 OF .\SRC\MAIN.C: 'MotorB2': undefined identifier
+*** ERROR C202 IN LINE 100 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 100 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 100 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 100 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 101 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 101 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 101 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 101 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 102 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 102 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 102 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 102 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 116 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 116 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 116 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 116 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 117 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 117 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 117 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 117 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 120 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 120 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 120 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 120 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MAIN.C: 'MotorA1': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MAIN.C: 'MotorB1': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MAIN.C: 'MotorC1': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MAIN.C: 'MotorD1': undefined identifier
+C51 COMPILATION COMPLETE.  0 WARNING(S),  66 ERROR(S)
+
+[2022-01-18 21:07:31]	[done]
+	build successfully !
+
+[2022-01-18 21:21:23]	[done]
+	build successfully !
+
+[2022-01-18 21:22:30]	[done]
+	build successfully !
+
+[2022-01-18 21:29:37]	[done]
+	build successfully !
+
+[2022-01-18 21:30:59]	[done]
+	build successfully !
+
+[2022-01-18 21:31:59]	[done]
+	build successfully !
+
+[2022-01-18 21:32:54]	[done]
+	build successfully !
+
+[2022-01-18 21:44:34]	compilation failed at : "e:\Project_Practice\51单片机模块学习\51单片机控制步进电机\src\main.c", exit code: 2
+  at unify_builder.Program.Main (System.String[] args) [0x01851] in <bd848165df964d26b51d3d1ad263c7b0>:0 
+---
+C51 COMPILER V9.60.0.0 - SN: K1DZC-I2YZBC
+COPYRIGHT Copyright (C) 2012 - 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 197 OF .\SRC\MAIN.C: syntax error near '', expected '__asm'
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2022-01-18 21:44:52]	[done]
+	build successfully !
+
+[2022-01-18 21:59:12]	[done]
+	build successfully !
+
+[2022-01-20 16:16:11]	[done]
+	build successfully !
+
+[2022-01-20 16:17:48]	[done]
+	build successfully !
+
+[2022-01-20 16:18:51]	[done]
+	build successfully !
+
+[2022-01-20 16:36:20]	[done]
+	build successfully !
+
+[2022-01-20 16:38:54]	[done]
+	build successfully !
+
+[2022-01-20 21:41:38]	[done]
+	build successfully !
+

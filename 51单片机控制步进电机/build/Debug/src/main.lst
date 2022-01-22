@@ -1,0 +1,777 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Debug\src\main.o
+COMPILER INVOKED BY: D:\software\Program\Keil5\C51\BIN\C51.exe .\SRC\MAIN.C PRINT(.\build\Debug\src\main.lst) OMF2 TABS(
+                    -4) CODE NOCOND SYMBOLS OPTIMIZE(8,SPEED) SMALL ROM(LARGE) INCDIR(D:\software\Program\Keil5\C51\INC;.\src) DEFINE(__UVISI
+                    -ON_VERSION=526) OBJECT(.\build\Debug\src\main.o)
+
+line level    source
+
+   1          #include <REG52.H>
+   2          
+   3          sbit DIR1 = P2 ^ 0;
+   4          sbit CLK1 = P2 ^ 1;
+   5          
+   6          sbit MotorA1 = P1 ^ 4;
+   7          sbit MotorB1 = P1 ^ 5;
+   8          sbit MotorC1 = P1 ^ 6;
+   9          sbit MotorD1 = P1 ^ 7;
+  10          
+  11          #define CW 0
+  12          #define CCW 1
+  13          #define STOP 2
+  14          
+  15          void Timer0Init(void);
+  16          void Motor1Turn(unsigned char motorState);
+  17          void Motor2Turn(unsigned char motorState);
+  18          
+  19          int main()
+  20          {
+  21   1          Timer0Init();
+  22   1          while (1)
+  23   1          {
+  24   2          }
+  25   1      }
+  26          
+  27          void Timer0Init(void) //5毫秒@12.000MHz
+  28          {
+  29   1          TMOD = 0x01; //设置定时器模式
+  30   1          TL0 = 0x78;  //设置定时0初始值
+  31   1          TH0 = 0xEC;  //设置定时0初始值
+  32   1          TF0 = 0;     //清除TF0标志
+  33   1          TR0 = 1;     //定时器0开始计时
+  34   1          ET0 = 1;
+  35   1          EA = 1;
+  36   1      }
+  37          
+  38          void Timer0() interrupt 1
+  39          {
+  40   1          static int counts = 0;
+  41   1      
+  42   1          TL0 = 0x78; //设置定时0初始值
+  43   1          TH0 = 0xEC; //设置定时0初始值
+  44   1          counts++;
+  45   1          if (counts > 1)
+  46   1          {
+  47   2              Motor1Turn(CW);
+  48   2              Motor2Turn(CCW);
+  49   2      
+  50   2              counts = 0;
+  51   2          }
+  52   1      }
+  53          
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 2   
+
+  54          void Motor1Turn(unsigned char motorState)
+  55          {
+  56   1      
+  57   1          if (motorState == CW)
+  58   1          {
+  59   2              DIR1 = 1;
+  60   2              CLK1 = !CLK1;
+  61   2          }
+  62   1          else if (motorState == CCW)
+  63   1          {
+  64   2              DIR1 = 0;
+  65   2              CLK1 = !CLK1;
+  66   2          }
+  67   1          else
+  68   1          {
+  69   2              CLK1 = 0;
+  70   2          }
+  71   1      }
+  72          
+  73          void Motor2Turn(unsigned char motorState)
+  74          {
+  75   1          static int motor1Step = 0;
+  76   1          motor1Step++;
+  77   1          if (motor1Step > 7)
+  78   1          {
+  79   2              motor1Step = 0;
+  80   2          }
+  81   1          if (motorState == CW)
+  82   1          {
+  83   2              if (motor1Step == 0)
+  84   2              {
+  85   3                  MotorA1 = 0;
+  86   3                  MotorB1 = 0;
+  87   3                  MotorC1 = 0;
+  88   3                  MotorD1 = 1;
+  89   3              }
+  90   2              else if (motor1Step == 1)
+  91   2              {
+  92   3                  MotorA1 = 0;
+  93   3                  MotorB1 = 0;
+  94   3                  MotorC1 = 1;
+  95   3                  MotorD1 = 1;
+  96   3              }
+  97   2              else if (motor1Step == 2)
+  98   2              {
+  99   3                  MotorA1 = 0;
+ 100   3                  MotorB1 = 0;
+ 101   3                  MotorC1 = 1;
+ 102   3                  MotorD1 = 0;
+ 103   3              }
+ 104   2              else if (motor1Step == 3)
+ 105   2              {
+ 106   3                  MotorA1 = 0;
+ 107   3                  MotorB1 = 1;
+ 108   3                  MotorC1 = 1;
+ 109   3                  MotorD1 = 0;
+ 110   3              }
+ 111   2              else if (motor1Step == 4)
+ 112   2              {
+ 113   3                  MotorA1 = 0;
+ 114   3                  MotorB1 = 1;
+ 115   3                  MotorC1 = 0;
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 3   
+
+ 116   3                  MotorD1 = 0;
+ 117   3              }
+ 118   2              else if (motor1Step == 5)
+ 119   2              {
+ 120   3                  MotorA1 = 1;
+ 121   3                  MotorB1 = 1;
+ 122   3                  MotorC1 = 0;
+ 123   3                  MotorD1 = 0;
+ 124   3              }
+ 125   2              else if (motor1Step == 6)
+ 126   2              {
+ 127   3                  MotorA1 = 1;
+ 128   3                  MotorB1 = 0;
+ 129   3                  MotorC1 = 0;
+ 130   3                  MotorD1 = 0;
+ 131   3              }
+ 132   2              else if (motor1Step == 7)
+ 133   2              {
+ 134   3                  MotorA1 = 1;
+ 135   3                  MotorB1 = 0;
+ 136   3                  MotorC1 = 0;
+ 137   3                  MotorD1 = 1;
+ 138   3              }
+ 139   2          }
+ 140   1      
+ 141   1          else if (motorState == CCW)
+ 142   1          {
+ 143   2              if (motor1Step == 0)
+ 144   2              {
+ 145   3                  MotorA1 = 0;
+ 146   3                  MotorB1 = 0;
+ 147   3                  MotorC1 = 0;
+ 148   3                  MotorD1 = 1;
+ 149   3              }
+ 150   2              else if (motor1Step == 1)
+ 151   2              {
+ 152   3                  MotorA1 = 1;
+ 153   3                  MotorB1 = 0;
+ 154   3                  MotorC1 = 0;
+ 155   3                  MotorD1 = 1;
+ 156   3              }
+ 157   2              else if (motor1Step == 2)
+ 158   2              {
+ 159   3                  MotorA1 = 1;
+ 160   3                  MotorB1 = 0;
+ 161   3                  MotorC1 = 0;
+ 162   3                  MotorD1 = 0;
+ 163   3              }
+ 164   2              else if (motor1Step == 3)
+ 165   2              {
+ 166   3                  MotorA1 = 1;
+ 167   3                  MotorB1 = 1;
+ 168   3                  MotorC1 = 0;
+ 169   3                  MotorD1 = 0;
+ 170   3              }
+ 171   2              else if (motor1Step == 4)
+ 172   2              {
+ 173   3                  MotorA1 = 0;
+ 174   3                  MotorB1 = 1;
+ 175   3                  MotorC1 = 0;
+ 176   3                  MotorD1 = 0;
+ 177   3              }
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 4   
+
+ 178   2              else if (motor1Step == 5)
+ 179   2              {
+ 180   3                  MotorA1 = 0;
+ 181   3                  MotorB1 = 1;
+ 182   3                  MotorC1 = 1;
+ 183   3                  MotorD1 = 0;
+ 184   3              }
+ 185   2              else if (motor1Step == 6)
+ 186   2              {
+ 187   3                  MotorA1 = 0;
+ 188   3                  MotorB1 = 0;
+ 189   3                  MotorC1 = 1;
+ 190   3                  MotorD1 = 0;
+ 191   3              }
+ 192   2              else if (motor1Step == 7)
+ 193   2              {
+ 194   3                  MotorA1 = 0;
+ 195   3                  MotorB1 = 0;
+ 196   3                  MotorC1 = 1;
+ 197   3                  MotorD1 = 1;
+ 198   3              }
+ 199   2          }
+ 200   1      }
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 5   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 19
+                                           ; SOURCE LINE # 20
+                                           ; SOURCE LINE # 21
+0000 120000      R     LCALL   Timer0Init
+0003         ?C0001:
+                                           ; SOURCE LINE # 22
+                                           ; SOURCE LINE # 23
+                                           ; SOURCE LINE # 24
+0003 80FE              SJMP    ?C0001
+             ; FUNCTION main (END)
+
+             ; FUNCTION Timer0Init (BEGIN)
+                                           ; SOURCE LINE # 27
+                                           ; SOURCE LINE # 28
+                                           ; SOURCE LINE # 29
+0000 758901            MOV     TMOD,#01H
+                                           ; SOURCE LINE # 30
+0003 758A78            MOV     TL0,#078H
+                                           ; SOURCE LINE # 31
+0006 758CEC            MOV     TH0,#0ECH
+                                           ; SOURCE LINE # 32
+0009 C28D              CLR     TF0
+                                           ; SOURCE LINE # 33
+000B D28C              SETB    TR0
+                                           ; SOURCE LINE # 34
+000D D2A9              SETB    ET0
+                                           ; SOURCE LINE # 35
+000F D2AF              SETB    EA
+                                           ; SOURCE LINE # 36
+0011 22                RET     
+             ; FUNCTION Timer0Init (END)
+
+             ; FUNCTION Timer0 (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0F0              PUSH    B
+0004 C083              PUSH    DPH
+0006 C082              PUSH    DPL
+0008 C0D0              PUSH    PSW
+000A 75D000            MOV     PSW,#00H
+000D C000              PUSH    AR0
+000F C001              PUSH    AR1
+0011 C002              PUSH    AR2
+0013 C003              PUSH    AR3
+0015 C004              PUSH    AR4
+0017 C005              PUSH    AR5
+0019 C006              PUSH    AR6
+001B C007              PUSH    AR7
+                                           ; SOURCE LINE # 38
+                                           ; SOURCE LINE # 42
+001D 758A78            MOV     TL0,#078H
+                                           ; SOURCE LINE # 43
+0020 758CEC            MOV     TH0,#0ECH
+                                           ; SOURCE LINE # 44
+0023 0500        R     INC     counts+01H
+0025 E500        R     MOV     A,counts+01H
+0027 7002              JNZ     ?C0047
+0029 0500        R     INC     counts
+002B         ?C0047:
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 6   
+
+                                           ; SOURCE LINE # 45
+002B D3                SETB    C
+002C 9401              SUBB    A,#01H
+002E E500        R     MOV     A,counts
+0030 6480              XRL     A,#080H
+0032 9480              SUBB    A,#080H
+0034 4010              JC      ?C0006
+                                           ; SOURCE LINE # 46
+                                           ; SOURCE LINE # 47
+0036 E4                CLR     A
+0037 FF                MOV     R7,A
+0038 120000      R     LCALL   _Motor1Turn
+                                           ; SOURCE LINE # 48
+003B 7F01              MOV     R7,#01H
+003D 120000      R     LCALL   _Motor2Turn
+                                           ; SOURCE LINE # 50
+0040 750000      R     MOV     counts,#00H
+0043 750000      R     MOV     counts+01H,#00H
+                                           ; SOURCE LINE # 51
+                                           ; SOURCE LINE # 52
+0046         ?C0006:
+0046 D007              POP     AR7
+0048 D006              POP     AR6
+004A D005              POP     AR5
+004C D004              POP     AR4
+004E D003              POP     AR3
+0050 D002              POP     AR2
+0052 D001              POP     AR1
+0054 D000              POP     AR0
+0056 D0D0              POP     PSW
+0058 D082              POP     DPL
+005A D083              POP     DPH
+005C D0F0              POP     B
+005E D0E0              POP     ACC
+0060 32                RETI    
+             ; FUNCTION Timer0 (END)
+
+             ; FUNCTION _Motor1Turn (BEGIN)
+                                           ; SOURCE LINE # 54
+;---- Variable 'motorState' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 55
+                                           ; SOURCE LINE # 57
+0000 EF                MOV     A,R7
+0001 FD                MOV     R5,A
+0002 7C00              MOV     R4,#00H
+0004 7005              JNZ     ?C0007
+                                           ; SOURCE LINE # 58
+                                           ; SOURCE LINE # 59
+0006 D2A0              SETB    DIR1
+                                           ; SOURCE LINE # 60
+0008 B2A1              CPL     CLK1
+                                           ; SOURCE LINE # 61
+000A 22                RET     
+000B         ?C0007:
+                                           ; SOURCE LINE # 62
+000B ED                MOV     A,R5
+000C 6401              XRL     A,#01H
+000E 4C                ORL     A,R4
+000F 7005              JNZ     ?C0009
+                                           ; SOURCE LINE # 63
+                                           ; SOURCE LINE # 64
+0011 C2A0              CLR     DIR1
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 7   
+
+                                           ; SOURCE LINE # 65
+0013 B2A1              CPL     CLK1
+                                           ; SOURCE LINE # 66
+0015 22                RET     
+0016         ?C0009:
+                                           ; SOURCE LINE # 68
+                                           ; SOURCE LINE # 69
+0016 C2A1              CLR     CLK1
+                                           ; SOURCE LINE # 70
+                                           ; SOURCE LINE # 71
+0018         ?C0011:
+0018 22                RET     
+             ; FUNCTION _Motor1Turn (END)
+
+             ; FUNCTION _Motor2Turn (BEGIN)
+                                           ; SOURCE LINE # 73
+;---- Variable 'motorState' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 74
+                                           ; SOURCE LINE # 76
+0000 0500        R     INC     motor1Step+01H
+0002 E500        R     MOV     A,motor1Step+01H
+0004 7002              JNZ     ?C0048
+0006 0500        R     INC     motor1Step
+0008         ?C0048:
+                                           ; SOURCE LINE # 77
+0008 D3                SETB    C
+0009 9407              SUBB    A,#07H
+000B E500        R     MOV     A,motor1Step
+000D 6480              XRL     A,#080H
+000F 9480              SUBB    A,#080H
+0011 4005              JC      ?C0012
+                                           ; SOURCE LINE # 78
+                                           ; SOURCE LINE # 79
+0013 E4                CLR     A
+0014 F500        R     MOV     motor1Step,A
+0016 F500        R     MOV     motor1Step+01H,A
+                                           ; SOURCE LINE # 80
+0018         ?C0012:
+                                           ; SOURCE LINE # 81
+0018 EF                MOV     A,R7
+0019 FD                MOV     R5,A
+001A 7C00              MOV     R4,#00H
+001C 7054              JNZ     ?C0013
+                                           ; SOURCE LINE # 82
+                                           ; SOURCE LINE # 83
+001E E500        R     MOV     A,motor1Step+01H
+0020 4500        R     ORL     A,motor1Step
+0022 7002              JNZ     ?C0014
+                                           ; SOURCE LINE # 84
+                                           ; SOURCE LINE # 85
+                                           ; SOURCE LINE # 86
+                                           ; SOURCE LINE # 87
+                                           ; SOURCE LINE # 88
+                                           ; SOURCE LINE # 89
+0024 8058              SJMP    ?C0049
+0026         ?C0014:
+                                           ; SOURCE LINE # 90
+0026 E500        R     MOV     A,motor1Step+01H
+0028 6401              XRL     A,#01H
+002A 4500        R     ORL     A,motor1Step
+002C 7003              JNZ     ?C0016
+                                           ; SOURCE LINE # 91
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 8   
+
+                                           ; SOURCE LINE # 92
+                                           ; SOURCE LINE # 93
+                                           ; SOURCE LINE # 94
+                                           ; SOURCE LINE # 95
+                                           ; SOURCE LINE # 96
+002E 020000      R     LJMP    ?C0050
+0031         ?C0016:
+                                           ; SOURCE LINE # 97
+0031 E500        R     MOV     A,motor1Step+01H
+0033 6402              XRL     A,#02H
+0035 4500        R     ORL     A,motor1Step
+0037 7003              JNZ     ?C0018
+                                           ; SOURCE LINE # 98
+                                           ; SOURCE LINE # 99
+                                           ; SOURCE LINE # 100
+                                           ; SOURCE LINE # 101
+                                           ; SOURCE LINE # 102
+                                           ; SOURCE LINE # 103
+0039 020000      R     LJMP    ?C0051
+003C         ?C0018:
+                                           ; SOURCE LINE # 104
+003C E500        R     MOV     A,motor1Step+01H
+003E 6403              XRL     A,#03H
+0040 4500        R     ORL     A,motor1Step
+0042 7003              JNZ     ?C0020
+                                           ; SOURCE LINE # 105
+                                           ; SOURCE LINE # 106
+                                           ; SOURCE LINE # 107
+                                           ; SOURCE LINE # 108
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 110
+0044 020000      R     LJMP    ?C0052
+0047         ?C0020:
+                                           ; SOURCE LINE # 111
+0047 E500        R     MOV     A,motor1Step+01H
+0049 6404              XRL     A,#04H
+004B 4500        R     ORL     A,motor1Step
+004D 7002              JNZ     ?C0022
+                                           ; SOURCE LINE # 112
+                                           ; SOURCE LINE # 113
+                                           ; SOURCE LINE # 114
+                                           ; SOURCE LINE # 115
+                                           ; SOURCE LINE # 116
+                                           ; SOURCE LINE # 117
+004F 8066              SJMP    ?C0053
+0051         ?C0022:
+                                           ; SOURCE LINE # 118
+0051 E500        R     MOV     A,motor1Step+01H
+0053 6405              XRL     A,#05H
+0055 4500        R     ORL     A,motor1Step
+0057 7002              JNZ     ?C0024
+                                           ; SOURCE LINE # 119
+                                           ; SOURCE LINE # 120
+                                           ; SOURCE LINE # 121
+                                           ; SOURCE LINE # 122
+                                           ; SOURCE LINE # 123
+                                           ; SOURCE LINE # 124
+0059 804E              SJMP    ?C0054
+005B         ?C0024:
+                                           ; SOURCE LINE # 125
+005B E500        R     MOV     A,motor1Step+01H
+005D 6406              XRL     A,#06H
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 9   
+
+005F 4500        R     ORL     A,motor1Step
+0061 7002              JNZ     ?C0026
+                                           ; SOURCE LINE # 126
+                                           ; SOURCE LINE # 127
+                                           ; SOURCE LINE # 128
+                                           ; SOURCE LINE # 129
+                                           ; SOURCE LINE # 130
+                                           ; SOURCE LINE # 131
+0063 8036              SJMP    ?C0055
+0065         ?C0026:
+                                           ; SOURCE LINE # 132
+0065 E500        R     MOV     A,motor1Step+01H
+0067 6407              XRL     A,#07H
+0069 4500        R     ORL     A,motor1Step
+006B 6003              JZ      $ + 5H
+006D 020000      R     LJMP    ?C0046
+                                           ; SOURCE LINE # 133
+                                           ; SOURCE LINE # 134
+                                           ; SOURCE LINE # 135
+                                           ; SOURCE LINE # 136
+                                           ; SOURCE LINE # 137
+                                           ; SOURCE LINE # 138
+                                           ; SOURCE LINE # 139
+0070 8018              SJMP    ?C0056
+0072         ?C0013:
+                                           ; SOURCE LINE # 141
+0072 ED                MOV     A,R5
+0073 6401              XRL     A,#01H
+0075 4C                ORL     A,R4
+0076 7077              JNZ     ?C0046
+                                           ; SOURCE LINE # 142
+                                           ; SOURCE LINE # 143
+0078 E500        R     MOV     A,motor1Step+01H
+007A 4500        R     ORL     A,motor1Step
+007C 7004              JNZ     ?C0031
+                                           ; SOURCE LINE # 144
+                                           ; SOURCE LINE # 145
+007E         ?C0049:
+007E C294              CLR     MotorA1
+                                           ; SOURCE LINE # 146
+                                           ; SOURCE LINE # 147
+                                           ; SOURCE LINE # 148
+                                           ; SOURCE LINE # 149
+0080 800A              SJMP    ?C0057
+0082         ?C0031:
+                                           ; SOURCE LINE # 150
+0082 E500        R     MOV     A,motor1Step+01H
+0084 6401              XRL     A,#01H
+0086 4500        R     ORL     A,motor1Step
+0088 7009              JNZ     ?C0033
+                                           ; SOURCE LINE # 151
+                                           ; SOURCE LINE # 152
+008A         ?C0056:
+008A D294              SETB    MotorA1
+                                           ; SOURCE LINE # 153
+008C         ?C0057:
+008C C295              CLR     MotorB1
+                                           ; SOURCE LINE # 154
+008E C296              CLR     MotorC1
+                                           ; SOURCE LINE # 155
+0090 D297              SETB    MotorD1
+                                           ; SOURCE LINE # 156
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 10  
+
+0092 22                RET     
+0093         ?C0033:
+                                           ; SOURCE LINE # 157
+0093 E500        R     MOV     A,motor1Step+01H
+0095 6402              XRL     A,#02H
+0097 4500        R     ORL     A,motor1Step
+0099 7006              JNZ     ?C0035
+                                           ; SOURCE LINE # 158
+                                           ; SOURCE LINE # 159
+009B         ?C0055:
+009B D294              SETB    MotorA1
+                                           ; SOURCE LINE # 160
+009D C295              CLR     MotorB1
+                                           ; SOURCE LINE # 161
+                                           ; SOURCE LINE # 162
+                                           ; SOURCE LINE # 163
+009F 801A              SJMP    ?C0059
+00A1         ?C0035:
+                                           ; SOURCE LINE # 164
+00A1 E500        R     MOV     A,motor1Step+01H
+00A3 6403              XRL     A,#03H
+00A5 4500        R     ORL     A,motor1Step
+00A7 7006              JNZ     ?C0037
+                                           ; SOURCE LINE # 165
+                                           ; SOURCE LINE # 166
+00A9         ?C0054:
+00A9 D294              SETB    MotorA1
+                                           ; SOURCE LINE # 167
+00AB D295              SETB    MotorB1
+                                           ; SOURCE LINE # 168
+00AD         ?C0058:
+                                           ; SOURCE LINE # 169
+                                           ; SOURCE LINE # 170
+00AD 800C              SJMP    ?C0059
+00AF         ?C0037:
+                                           ; SOURCE LINE # 171
+00AF E500        R     MOV     A,motor1Step+01H
+00B1 6404              XRL     A,#04H
+00B3 4500        R     ORL     A,motor1Step
+00B5 7009              JNZ     ?C0039
+                                           ; SOURCE LINE # 172
+                                           ; SOURCE LINE # 173
+00B7         ?C0053:
+00B7 C294              CLR     MotorA1
+                                           ; SOURCE LINE # 174
+00B9 D295              SETB    MotorB1
+                                           ; SOURCE LINE # 175
+00BB         ?C0059:
+00BB C296              CLR     MotorC1
+                                           ; SOURCE LINE # 176
+00BD C297              CLR     MotorD1
+                                           ; SOURCE LINE # 177
+00BF 22                RET     
+00C0         ?C0039:
+                                           ; SOURCE LINE # 178
+00C0 E500        R     MOV     A,motor1Step+01H
+00C2 6405              XRL     A,#05H
+00C4 4500        R     ORL     A,motor1Step
+00C6 7006              JNZ     ?C0041
+                                           ; SOURCE LINE # 179
+                                           ; SOURCE LINE # 180
+00C8         ?C0052:
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 11  
+
+00C8 C294              CLR     MotorA1
+                                           ; SOURCE LINE # 181
+00CA D295              SETB    MotorB1
+                                           ; SOURCE LINE # 182
+                                           ; SOURCE LINE # 183
+                                           ; SOURCE LINE # 184
+00CC 800C              SJMP    ?C0060
+00CE         ?C0041:
+                                           ; SOURCE LINE # 185
+00CE E500        R     MOV     A,motor1Step+01H
+00D0 6406              XRL     A,#06H
+00D2 4500        R     ORL     A,motor1Step
+00D4 7009              JNZ     ?C0043
+                                           ; SOURCE LINE # 186
+                                           ; SOURCE LINE # 187
+00D6         ?C0051:
+00D6 C294              CLR     MotorA1
+                                           ; SOURCE LINE # 188
+00D8 C295              CLR     MotorB1
+                                           ; SOURCE LINE # 189
+00DA         ?C0060:
+00DA D296              SETB    MotorC1
+                                           ; SOURCE LINE # 190
+00DC C297              CLR     MotorD1
+                                           ; SOURCE LINE # 191
+00DE 22                RET     
+00DF         ?C0043:
+                                           ; SOURCE LINE # 192
+00DF E500        R     MOV     A,motor1Step+01H
+00E1 6407              XRL     A,#07H
+00E3 4500        R     ORL     A,motor1Step
+00E5 7008              JNZ     ?C0046
+                                           ; SOURCE LINE # 193
+                                           ; SOURCE LINE # 194
+00E7         ?C0050:
+00E7 C294              CLR     MotorA1
+                                           ; SOURCE LINE # 195
+00E9 C295              CLR     MotorB1
+                                           ; SOURCE LINE # 196
+00EB D296              SETB    MotorC1
+                                           ; SOURCE LINE # 197
+00ED D297              SETB    MotorD1
+                                           ; SOURCE LINE # 198
+                                           ; SOURCE LINE # 199
+                                           ; SOURCE LINE # 200
+00EF         ?C0046:
+00EF 22                RET     
+             ; FUNCTION _Motor2Turn (END)
+
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 12  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+MotorA1. . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+MotorB1. . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+MotorC1. . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+MotorD1. . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+CLK1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A1H  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+DIR1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A0H  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+RCAP2H . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CBH  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+RCAP2L . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CAH  1
+main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+RCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+TCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+Timer0 . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  counts . . . . . . . . . . . . . . .  STATIC   DATA   INT      0000H  2
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+CP_RL2 . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+Timer0Init . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+C51 COMPILER V9.60.0.0   MAIN                                                              01/20/2022 21:41:38 PAGE 13  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+TH2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CDH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+TL2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CCH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+PT2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+_Motor1Turn. . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  motorState . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+_Motor2Turn. . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  motorState . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  motor1Step . . . . . . . . . . . . .  STATIC   DATA   INT      0002H  2
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    388    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

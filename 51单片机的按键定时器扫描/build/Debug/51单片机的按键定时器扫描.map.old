@@ -1,0 +1,288 @@
+LX51 LINKER/LOCATER V4.66.97.0                                                          01/18/2022  19:19:12  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.97.0, INVOKED BY:
+D:\SOFTWARE\PROGRAM\KEIL5\C51\BIN\LX51.EXE .\BUILD\DEBUG\SRC\LCD1602.O, .\BUILD\DEBUG\SRC\MAIN.O TO .\BUILD\DEBUG\51��Ƭ
+>> ���İ�����ʱ��ɨ�� PRINT (.\build\Debug\51��Ƭ���İ�����ʱ��ɨ��.map) REMOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\DEBUG\SRC\LCD1602.O (LCD1602)
+         COMMENT TYPE 0: C51 V9.60.0.0
+  .\BUILD\DEBUG\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.60.0.0
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C?CLDPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (PRINTF)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C_INIT)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C?CSTPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C?CCASE)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (PUTCHAR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\DEBUG\51��Ƭ���İ�����ʱ��ɨ�� (LCD1602)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   0006E1H   CODE
+I:000000H   I:000000H   I:00007FH   000062H   DATA
+C:000000H   C:000000H   C:00FFFFH   000035H   CONST
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+I:000020H.0 I:000020H.0 I:00002FH.7 000001H.1 BIT
+
+
+MEMORY MAP OF MODULE:  .\BUILD\DEBUG\51��Ƭ���İ�����ʱ��ɨ�� (LCD1602)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   00001BH   000014H   BYTE   UNIT     DATA           _DATA_GROUP_
+00001CH.0 00001FH.7 000004H.0 ---    ---      **GAP**
+000020H.0 000021H.0 000001H.1 BIT    UNIT     BIT            _BIT_GROUP_
+000021H.1 000021H   000000H.7 ---    ---      **GAP**
+000022H   000067H   000046H   BYTE   UNIT     DATA           ?DT?MAIN
+000068H   000068H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   00000AH   000008H   ---    ---      **GAP**
+00000BH   00000DH   000003H   BYTE   OFFS..   CODE           ?MAIN?0000B
+00000EH   000369H   00035CH   BYTE   UNIT     CODE           ?PR?PRINTF?PRINTF
+00036AH   00041CH   0000B3H   BYTE   UNIT     CODE           ?PR?KEYSCAN?MAIN
+LX51 LINKER/LOCATER V4.66.97.0                                                        01/18/2022  19:19:12  PAGE 2
+
+
+00041DH   0004AAH   00008EH   BYTE   UNIT     CODE           ?C?LIB_CODE
+0004ABH   000536H   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+000537H   0005A6H   000070H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+0005A7H   0005F6H   000050H   BYTE   UNIT     CODE           ?C_INITSEG
+0005F7H   000636H   000040H   BYTE   UNIT     CODE           ?PR?_LCD1602_DELAY1MS?LCD1602
+000637H   00065EH   000028H   BYTE   UNIT     CODE           ?PR?_LCDSHOWSTR?LCD1602
+00065FH   000685H   000027H   BYTE   UNIT     CODE           ?PR?PUTCHAR?PUTCHAR
+000686H   00069EH   000019H   BYTE   UNIT     CODE           ?PR?LCDINIT?LCD1602
+00069FH   0006B0H   000012H   BYTE   UNIT     CODE           ?PR?_LCDSETCURSOR?LCD1602
+0006B1H   0006C2H   000012H   BYTE   UNIT     CODE           ?PR?TIMER0INIT?MAIN
+0006C3H   0006D4H   000012H   BYTE   UNIT     CODE           ?PR?TIMER0?MAIN
+0006D5H   0006DEH   00000AH   BYTE   UNIT     CODE           ?PR?_LCDWRITECOM?LCD1602
+0006DFH   0006E8H   00000AH   BYTE   UNIT     CODE           ?PR?_LCDWRITEDATA?LCD1602
+0006E9H   00071DH   000035H   BYTE   UNIT     CONST          ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\DEBUG\51��Ƭ���İ�����ʱ��ɨ�� (LCD1602)
+
+
+FUNCTION/MODULE                 BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE     START  STOP  START  STOP
+=======================================================
+TIMER0/MAIN                    ----- -----  ----- -----
+  +--> KEYSCAN/MAIN
+
+KEYSCAN/MAIN                   ----- -----  ----- -----
+
+*** NEW ROOT *****************
+
+?C_C51STARTUP                  ----- -----  ----- -----
+  +--> MAIN/MAIN
+  +--> ?C_INITSEG
+
+MAIN/MAIN                      ----- -----  ----- -----
+  +--> LCDINIT/LCD1602
+  +--> TIMER0INIT/MAIN
+  +--> PRINTF/PRINTF
+  +--> _LCDSHOWSTR/LCD1602
+
+LCDINIT/LCD1602                ----- -----  ----- -----
+  +--> _LCDWRITECOM/LCD1602
+
+_LCDWRITECOM/LCD1602           ----- -----  ----- -----
+  +--> _LCD1602_DELAY1MS/LCD1602
+
+_LCD1602_DELAY1MS/LCD1602      ----- -----  ----- -----
+
+TIMER0INIT/MAIN                ----- -----  ----- -----
+
+PRINTF/PRINTF                  20H.0 21H.0  0008H 001BH
+  +--> PUTCHAR/PUTCHAR
+
+PUTCHAR/PUTCHAR                ----- -----  ----- -----
+
+_LCDSHOWSTR/LCD1602            ----- -----  0008H 000AH
+  +--> _LCDSETCURSOR/LCD1602
+  +--> _LCDWRITEDATA/LCD1602
+
+_LCDSETCURSOR/LCD1602          ----- -----  ----- -----
+  +--> _LCDWRITECOM/LCD1602
+
+_LCDWRITEDATA/LCD1602          ----- -----  ----- -----
+  +--> _LCD1602_DELAY1MS/LCD1602
+
+LX51 LINKER/LOCATER V4.66.97.0                                                        01/18/2022  19:19:12  PAGE 3
+
+
+?C_INITSEG                     ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\DEBUG\51��Ƭ���İ�����ʱ��ɨ�� (LCD1602)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000008H   DATA     ---       ?_PRINTF517?BYTE
+      00000008H   DATA     ---       ?_PRINTF?BYTE
+      00000008H   DATA     ---       ?_SPRINTF517?BYTE
+      00000008H   DATA     ---       ?_SPRINTF?BYTE
+      01000485H   CODE     ---       ?C?CCASE
+      01000436H   CODE     ---       ?C?CLDOPTR
+      0100041DH   CODE     ---       ?C?CLDPTR
+      00000000H   NUMBER   ---       ?C?CODESEG
+      01000463H   CODE     ---       ?C?CSTPTR
+      01000475H   CODE     ---       ?C?PLDIIDATA
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      010004F2H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000608H   CODE     ---       _Lcd1602_Delay1ms
+      0100069FH   CODE     ---       _LcdSetCursor
+      01000637H   CODE     ---       _LcdShowStr
+      010006D5H   CODE     ---       _LcdWriteCom
+      010006DFH   CODE     ---       _LcdWriteData
+      01000070H   CODE     ---       _PRINTF
+      01000070H   CODE     ---       _PRINTF517
+      0100065FH   CODE     ---       _PUTCHAR
+      0100006AH   CODE     ---       _SPRINTF
+      0100006AH   CODE     ---       _SPRINTF517
+      00000026H   DATA     ---       Disp
+      0100036AH   CODE     ---       KeyScan
+      01000686H   CODE     ---       LcdInit
+      01000537H   CODE     ---       main
+      00000066H   DATA     WORD      testValue
+      010006C3H   CODE     ---       Timer0
+      010006B1H   CODE     ---       Timer0Init
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\DEBUG\51��Ƭ���İ�����ʱ��ɨ�� (LCD1602)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       LCD1602
+      01000637H   PUBLIC    CODE     ---       _LcdShowStr
+      0100069FH   PUBLIC    CODE     ---       _LcdSetCursor
+      01000686H   PUBLIC    CODE     ---       LcdInit
+      010006DFH   PUBLIC    CODE     ---       _LcdWriteData
+      010006D5H   PUBLIC    CODE     ---       _LcdWriteCom
+      01000608H   PUBLIC    CODE     ---       _Lcd1602_Delay1ms
+
+      010005F7H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000608H   BLOCK     CODE     ---       LVL=0
+      01000608H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000004H   SYMBOL    DATA     VOID      a
+      00000005H   SYMBOL    DATA     VOID      b
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010006D5H   BLOCK     CODE     ---       LVL=0
+LX51 LINKER/LOCATER V4.66.97.0                                                        01/18/2022  19:19:12  PAGE 4
+
+
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010006DFH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000686H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100069FH   BLOCK     CODE     ---       LVL=0
+      0100069FH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      addr
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000637H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       MAIN
+      00000066H   PUBLIC    DATA     WORD      testValue
+      00000026H   PUBLIC    DATA     ---       Disp
+      010006C3H   PUBLIC    CODE     ---       Timer0
+      010006B1H   PUBLIC    CODE     ---       Timer0Init
+      0100036AH   PUBLIC    CODE     ---       KeyScan
+      01000537H   PUBLIC    CODE     ---       main
+
+      01000537H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100036AH   BLOCK     CODE     ---       LVL=0
+      0100036AH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000022H   SYMBOL    DATA     VOID      keyCount
+      00000024H   SYMBOL    DATA     VOID      keyState
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010006B1H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010006C3H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C?CLDPTR
+      0100041DH   PUBLIC    CODE     ---       ?C?CLDPTR
+
+      ---         MODULE    ---      ---       PRINTF
+      00000008H   PUBLIC    DATA     ---       ?_PRINTF517?BYTE
+      00000008H   PUBLIC    DATA     ---       ?_PRINTF?BYTE
+      00000008H   PUBLIC    DATA     ---       ?_SPRINTF517?BYTE
+      00000008H   PUBLIC    DATA     ---       ?_SPRINTF?BYTE
+      01000070H   PUBLIC    CODE     ---       _PRINTF
+      01000070H   PUBLIC    CODE     ---       _PRINTF517
+      0100006AH   PUBLIC    CODE     ---       _SPRINTF
+      0100006AH   PUBLIC    CODE     ---       _SPRINTF517
+
+      ---         MODULE    ---      ---       ?C_INIT
+      010004F2H   PUBLIC    CODE     ---       ?C_START
+
+      ---         MODULE    ---      ---       ?C?CLDOPTR
+      01000436H   PUBLIC    CODE     ---       ?C?CLDOPTR
+
+      ---         MODULE    ---      ---       ?C?CSTPTR
+      01000463H   PUBLIC    CODE     ---       ?C?CSTPTR
+LX51 LINKER/LOCATER V4.66.97.0                                                        01/18/2022  19:19:12  PAGE 5
+
+
+
+      ---         MODULE    ---      ---       ?C?PLDIIDATA
+      01000475H   PUBLIC    CODE     ---       ?C?PLDIIDATA
+
+      ---         MODULE    ---      ---       ?C?CCASE
+      01000485H   PUBLIC    CODE     ---       ?C?CCASE
+
+      ---         MODULE    ---      ---       PUTCHAR
+      0100065FH   PUBLIC    CODE     ---       _PUTCHAR
+
+Program Size: data=100.1 xdata=0 const=53 code=1761
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

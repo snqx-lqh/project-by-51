@@ -1,0 +1,3 @@
+
+.\build\Debug\src\main.o TO .\build\Debug\51单片机控制步进电机
+PRINT(.\build\Debug\51单片机控制步进电机.map) REMOVEUNUSED
